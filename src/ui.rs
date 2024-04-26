@@ -18,12 +18,14 @@ pub fn render(app: &mut App, frame: &mut Frame) {
         .constraints(vec![Constraint::Percentage(10), Constraint::Percentage(90)])
         .split(frame.size());
     frame.render_widget(
-        Tabs::new(vec!["Bubble Sort", "Bogo Sort"]).block(
-            Block::default()
-                .title("Algorithm")
-                .title_alignment(Alignment::Center)
-                .borders(Borders::ALL),
-        ),
+        Tabs::new(app.tab_list.clone())
+            .block(
+                Block::default()
+                    .title("Algorithm")
+                    .title_alignment(Alignment::Center)
+                    .borders(Borders::ALL),
+            )
+            .select(app.current_tab),
         layout[0],
     );
     frame.render_widget(

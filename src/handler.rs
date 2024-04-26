@@ -14,7 +14,13 @@ pub fn handle_key_events(key_event: KeyEvent, app: &mut App) -> AppResult<()> {
                 app.quit();
             }
         }
-        // Other handlers you could add here.
+        // Select next tab on `Tab` or previous tab on `Ctrl-Tab`
+        KeyCode::Tab => {
+            if key_event.modifiers == KeyModifiers::CONTROL {
+                app.prev_tab();
+            }
+            app.next_tab();
+        }
         _ => {}
     }
     Ok(())

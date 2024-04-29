@@ -14,12 +14,17 @@ pub fn handle_key_events(key_event: KeyEvent, app: &mut App) -> AppResult<()> {
                 app.quit();
             }
         }
-        // Select next tab on `Tab` or previous tab on `Ctrl-Tab`
-        KeyCode::Tab => {
+        // Select next tab on CTRL-n
+        KeyCode::Char('n') => {
+            if key_event.modifiers == KeyModifiers::CONTROL {
+                app.next_tab();
+            }
+        }
+        // Select prev tab on CTRL-p
+        KeyCode::Char('p') => {
             if key_event.modifiers == KeyModifiers::CONTROL {
                 app.prev_tab();
             }
-            app.next_tab();
         }
         _ => {}
     }

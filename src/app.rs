@@ -19,7 +19,7 @@ impl Default for App {
         Self {
             running: true,
             current_tab: 0,
-            tab_list: vec!["Bubble Sort", "Bogo Sort"],
+            tab_list: vec!["Bubble Sort", "Bogo Sort", "Selection Sort"],
         }
     }
 }
@@ -47,10 +47,10 @@ impl App {
     }
 
     pub fn prev_tab(&mut self) {
-        if self.current_tab == 0 {
-            self.current_tab = self.tab_list.len() - 1;
-        } else {
+        if self.current_tab != 0 {
             self.current_tab -= 1;
+        } else {
+            self.current_tab = self.tab_list.len() - 1;
         }
     }
 }

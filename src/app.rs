@@ -12,6 +12,10 @@ pub struct App {
     pub current_tab: usize,
     /// List of tabs
     pub tab_list: Vec<&'static str>,
+    /// Data Length
+    pub data_length: u32,
+    /// Tick rate
+    pub tick_rate: u32,
 }
 
 impl Default for App {
@@ -20,6 +24,8 @@ impl Default for App {
             running: true,
             current_tab: 0,
             tab_list: vec!["Bubble Sort", "Bogo Sort", "Selection Sort"],
+            data_length: 50,
+            tick_rate: 10,
         }
     }
 }

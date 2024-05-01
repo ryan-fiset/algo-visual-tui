@@ -35,7 +35,7 @@ pub fn render(app: &mut App, frame: &mut Frame) {
 
     // Data Length
     frame.render_widget(
-        Paragraph::new("50")
+        Paragraph::new(app.data_length.to_string())
             .block(
                 Block::default()
                     .title("Data Length [J/K]")
@@ -49,7 +49,7 @@ pub fn render(app: &mut App, frame: &mut Frame) {
 
     // Tick Rate
     frame.render_widget(
-        Paragraph::new("10")
+        Paragraph::new(app.tick_rate.to_string())
             .block(
                 Block::default()
                     .title("Tick Rate [H/L]")

@@ -1,3 +1,4 @@
+use rand::prelude::*;
 use std::error;
 
 /// Application result type.
@@ -11,18 +12,32 @@ pub struct App {
     /// List of tabs
     pub tab_list: Vec<&'static str>,
     /// Data Length
-    pub data_length: u32,
+    pub data_length: u64,
     /// Tick rate
-    pub tick_rate: u32,
+    pub tick_rate: u64,
+    /// Random number generator
+    pub rng: ThreadRng,
+    /// Barchart data
+    pub bar_data: Vec<(&'static str, u64)>,
 }
 
 impl Default for App {
     fn default() -> Self {
+        let data_length: u64 = 25;
+
+        let mut rng = rand::thread_rng();
+        let mut data: Vec<u64> = (1..=data_length).collect();
+        data.shuffle(&mut rng);
+
+        let bar_data = data.iter().map(|x| ("", *x)).collect::<Vec<(&str, u64)>>();
+
         Self {
             running: true,
             tab_list: vec!["Bubble Sort", "Bogo Sort", "Selection Sort"],
-            data_length: 50,
+            data_length,
             tick_rate: 10,
+            rng,
+            bar_data,
         }
     }
 }

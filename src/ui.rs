@@ -1,7 +1,7 @@
 use ratatui::{
     layout::{Alignment, Constraint, Direction, Layout},
-    style::{Color, Style},
-    widgets::{Block, BorderType, Borders, Paragraph},
+    style::{Color, Modifier, Style},
+    widgets::{BarChart, Block, BorderType, Borders, Paragraph},
     Frame,
 };
 
@@ -63,16 +63,23 @@ pub fn render(app: &mut App, frame: &mut Frame) {
 
     // Graph
     frame.render_widget(
-        Paragraph::new("")
+        BarChart::default()
             .block(
                 Block::default()
                     .title("Graph")
-                    .title_alignment(Alignment::Center)
                     .borders(Borders::ALL)
-                    .border_type(BorderType::Rounded),
+                    .title_alignment(Alignment::Center),
             )
-            .style(Style::default().fg(Color::Cyan))
-            .alignment(Alignment::Center),
+            .data(&app.bar_data)
+            .bar_width(6)
+            .bar_gap(0)
+            .bar_style(Style::default().fg(Color::White))
+            .label_style(
+                Style::default()
+                    .fg(Color::DarkGray)
+                    .add_modifier(Modifier::DIM),
+            )
+            .value_style(Style::default().fg(Color::White).bg(Color::White)),
         chunks[1],
     );
 

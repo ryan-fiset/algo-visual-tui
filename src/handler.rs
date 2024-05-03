@@ -30,6 +30,8 @@ pub fn handle_key_events(key_event: KeyEvent, app: &mut App) -> AppResult<()> {
                 app.tick_rate -= 1;
             }
         }
+        // Shuffle Data
+        KeyCode::Char('r') | KeyCode::Char('R') => app.shuffle_bar_data(),
         _ => {}
     }
     Ok(())

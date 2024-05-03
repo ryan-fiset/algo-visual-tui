@@ -23,13 +23,13 @@ pub struct App {
 
 impl Default for App {
     fn default() -> Self {
-        let data_length: u64 = 25;
+        let data_length: u64 = 50;
 
         let mut rng = rand::thread_rng();
-        let mut data: Vec<u64> = (1..=data_length).collect();
-        data.shuffle(&mut rng);
+        let data: Vec<u64> = (1..=data_length).collect();
 
-        let bar_data = data.iter().map(|x| ("", *x)).collect::<Vec<(&str, u64)>>();
+        let mut bar_data = data.iter().map(|x| ("", *x)).collect::<Vec<(&str, u64)>>();
+        bar_data.shuffle(&mut rng);
 
         Self {
             running: true,
@@ -50,6 +50,10 @@ impl App {
 
     /// Handles the tick event of the terminal.
     pub fn tick(&self) {}
+
+    pub fn shuffle_bar_data(&mut self) {
+        self.bar_data.shuffle(&mut self.rng);
+    }
 
     /// Set running to false to quit the application.
     pub fn quit(&mut self) {

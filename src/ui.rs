@@ -71,8 +71,8 @@ pub fn render(app: &mut App, frame: &mut Frame) {
                     .title_alignment(Alignment::Center),
             )
             .data(&app.bar_data)
-            .bar_width(6)
-            .bar_gap(0)
+            .bar_width(1)
+            .bar_gap(1)
             .bar_style(Style::default().fg(Color::White))
             .label_style(
                 Style::default()

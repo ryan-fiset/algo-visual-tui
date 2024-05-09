@@ -15,11 +15,11 @@ pub fn handle_key_events(key_event: KeyEvent, app: &mut App) -> AppResult<()> {
             }
         }
         // Increase data length
-        KeyCode::Char('k') | KeyCode::Char('K') => app.data_length += 1,
+        KeyCode::Char('k') | KeyCode::Char('K') => app.increase_data_length(),
         // Decrease data length
         KeyCode::Char('j') | KeyCode::Char('J') => {
             if app.data_length > 3 {
-                app.data_length -= 1;
+                app.decrease_data_length();
             }
         }
         // Increase tick rate

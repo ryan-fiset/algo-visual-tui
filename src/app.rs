@@ -55,6 +55,19 @@ impl App {
         self.bar_data.shuffle(&mut self.rng);
     }
 
+    pub fn increase_data_length(&mut self) {
+        self.data_length += 1;
+        self.bar_data.push(("", self.data_length));
+        self.shuffle_bar_data();
+    }
+
+    pub fn decrease_data_length(&mut self) {
+        self.data_length -= 1;
+        let data_clone = self.bar_data.clone();
+        let some_x = data_clone.iter().max().unwrap();
+        self.bar_data.retain(|&x| x != *some_x);
+    }
+
     /// Set running to false to quit the application.
     pub fn quit(&mut self) {
         self.running = false;

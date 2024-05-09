@@ -62,26 +62,24 @@ pub fn render(app: &mut App, frame: &mut Frame) {
     );
 
     // Graph
-    frame.render_widget(
-        BarChart::default()
-            .block(
-                Block::default()
-                    .title("Graph")
-                    .borders(Borders::ALL)
-                    .title_alignment(Alignment::Center),
-            )
-            .data(&app.bar_data)
-            .bar_width(1)
-            .bar_gap(1)
-            .bar_style(Style::default().fg(Color::White))
-            .label_style(
-                Style::default()
-                    .fg(Color::DarkGray)
-                    .add_modifier(Modifier::DIM),
-            )
-            .value_style(Style::default().fg(Color::White).bg(Color::White)),
-        chunks[1],
-    );
+    let bar_chart = BarChart::default()
+        .block(
+            Block::default()
+                .title("Graph")
+                .borders(Borders::ALL)
+                .title_alignment(Alignment::Center),
+        )
+        .data(&app.bar_data)
+        .bar_width(1)
+        .bar_gap(1)
+        .bar_style(Style::default().fg(Color::White))
+        .label_style(
+            Style::default()
+                .fg(Color::DarkGray)
+                .add_modifier(Modifier::DIM),
+        )
+        .value_style(Style::default().fg(Color::White).bg(Color::White));
+    frame.render_widget(bar_chart, chunks[1]);
 
     // Key hints
     frame.render_widget(

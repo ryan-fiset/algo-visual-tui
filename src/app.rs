@@ -23,7 +23,7 @@ pub struct App {
 
 impl Default for App {
     fn default() -> Self {
-        let data_length: u64 = 50;
+        let data_length: u64 = 100;
 
         let mut rng = rand::thread_rng();
         let data: Vec<u64> = (1..=data_length).collect();
